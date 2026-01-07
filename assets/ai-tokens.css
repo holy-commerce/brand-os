@@ -1,0 +1,15 @@
+/* Brand OS Tokens (AI-managed)
+   Brand branches may override values here.
+*/
+
+:root {
+  --ai-page-max: 1200px;
+  --ai-section-pad-y: 48px;
+  --ai-section-pad-x: 24px;
+
+  --ai-radius-sm: 8px;
+  --ai-radius-md: 16px;
+  --ai-radius-lg: 24px;
+
+  --ai-shadow-sm: 0 2px 12px rgba(0,0,0,.08);
+}
