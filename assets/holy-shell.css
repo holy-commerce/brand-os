@@ -1,0 +1,113 @@
+/* HØLY Shell Overrides (v1)
+   Goal: Make key brand surfaces feel like Figma—navigation centering, icon states,
+   announcement bar, and footer—without fighting Dawn.
+*/
+
+/* ---------- Header / Nav ---------- */
+
+/* Ensure the inline menu centers between logo and icons (desktop) */
+@media screen and (min-width: 990px) {
+  .header {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .header__inline-menu {
+    justify-self: center;
+    width: 100%;
+  }
+
+  .header__inline-menu .list-menu--inline {
+    justify-content: center;
+    width: 100%;
+    gap: 8px;
+  }
+}
+
+/* Icon hover “pill/circle” states like Figma */
+.header__icons .header__icon,
+.header__icons details-modal .header__icon {
+  border-radius: 999px;
+  padding: 10px;
+  transition: background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.header__icons .header__icon:hover,
+.header__icons .header__icon:focus-visible,
+.header__icons details-modal .header__icon:hover,
+.header__icons details-modal .header__icon:focus-visible {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Remove underlines; rely on the “chip” hover */
+.header__menu-item,
+.header__menu-item:link,
+.header__menu-item:visited {
+  text-decoration: none !important;
+}
+
+/* Give top-level nav items a soft chip hover */
+.header__inline-menu summary.list-menu__item,
+.header__inline-menu a.header__menu-item {
+  border-radius: 999px;
+  padding: 10px 14px;
+  transition: background-color 160ms ease;
+}
+
+.header__inline-menu summary.list-menu__item:hover,
+.header__inline-menu summary.list-menu__item:focus-visible,
+.header__inline-menu a.header__menu-item:hover,
+.header__inline-menu a.header__menu-item:focus-visible {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* ---------- Announcement Bar ---------- */
+
+.announcement-bar,
+.announcement-bar__message {
+  background: rgb(26, 26, 26);
+  color: #fff;
+}
+
+.announcement-bar__message {
+  letter-spacing: 0.06em;
+}
+
+/* ---------- Mega menu refinements ---------- */
+
+.mega-menu__content {
+  border-radius: 28px;
+}
+
+.holy-mega__title {
+  letter-spacing: 0.14em;
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  margin: 0 auto;
+}
+
+.footer__content-top,
+.footer__content-bottom {
+  border-radius: 28px;
+}
+
+.footer__content-top {
+  background: rgb(26, 26, 26);
+  color: #fff;
+}
+
+.footer__content-top a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer__content-top a:hover {
+  text-decoration: underline;
+}
+
+.footer__content-bottom {
+  background: rgb(26, 26, 26);
+  color: rgba(255,255,255,0.7);
+}

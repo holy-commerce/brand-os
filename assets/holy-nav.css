@@ -1,0 +1,235 @@
+/* HØLY Navigation overrides (v3.2)
+   Goal: Figma-aligned header with true visual centering, hover-open mega, normalized icons.
+*/
+
+/* === Header container as a rounded pill === */
+.header-wrapper {
+  background: transparent;
+}
+
+.section-header .header {
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding-left: 24px;
+  padding-right: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* remove Dawn’s default bottom border if present */
+.header-wrapper--border-bottom {
+  border-bottom: none !important;
+}
+
+/* Typography feel */
+.header__menu-item,
+.list-menu__item--link,
+.header__heading-link {
+  letter-spacing: var(--tracking-normal);
+}
+
+/* === TRUE DESKTOP CENTERING (fixes Figma mismatch) === */
+@media (min-width: 990px) {
+  .section-header .header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    position: relative;
+  }
+
+  /* Hard-center nav relative to pill */
+  .header__inline-menu {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .header__inline-menu .list-menu--inline {
+    justify-content: center;
+  }
+}
+
+/* === Mega menu panel styling (Dawn container) === */
+.mega-menu {
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  background: var(--background);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.mega-menu__content {
+  padding: 16px;
+}
+
+/* === HØLY custom Shop mega layout === */
+.holy-mega {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr 1fr;
+  gap: 24px;
+  align-items: start;
+  padding: 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--background);
+}
+
+@media (max-width: 989px) {
+  .holy-mega {
+    display: block;
+  }
+}
+
+/* Column headings */
+.holy-mega__title {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin: 0 0 12px;
+}
+
+/* Lists */
+.holy-mega__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.holy-mega__item {
+  margin: 0;
+}
+
+/* Link cards */
+.holy-mega__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  color: var(--foreground);
+}
+
+.holy-mega__link:hover {
+  border-color: var(--border);
+  background: rgba(26, 26, 26, 0.03);
+}
+
+.holy-mega__link.is-active {
+  border-color: var(--border);
+}
+
+.holy-mega__link-title {
+  font-weight: 600;
+}
+
+.holy-mega__empty {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* Promo card */
+.holy-promo {
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: rgba(26, 26, 26, 0.04);
+  padding: 16px;
+}
+
+.holy-promo__eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin: 0 0 8px;
+}
+
+.holy-promo__title {
+  font-weight: 700;
+  font-size: 16px;
+  margin: 0 0 8px;
+}
+
+.holy-promo__body {
+  font-size: 14px;
+  opacity: 0.75;
+  margin: 0 0 14px;
+}
+
+.holy-promo__actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.holy-promo__cta {
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--foreground);
+  text-decoration: none;
+  color: var(--foreground);
+}
+
+/* === Hover pill states (nav + icons) === */
+@media (min-width: 990px) {
+  :root {
+    --holy-hover-pill: rgba(140, 120, 95, 0.18);
+    --holy-hover-ring: rgba(140, 120, 95, 0.22);
+  }
+
+  .header__menu-item.list-menu__item {
+    border-radius: 999px;
+    padding: 8px 12px;
+    transition: background-color 120ms ease, box-shadow 120ms ease;
+  }
+
+  .header__menu-item:hover,
+  .header__menu-item:focus-visible {
+    background: var(--holy-hover-pill);
+    box-shadow: 0 0 0 1px var(--holy-hover-ring) inset;
+    text-decoration: none;
+  }
+
+  .header__icon {
+    border-radius: 999px;
+    padding: 8px;
+    transition: background-color 120ms ease, box-shadow 120ms ease;
+    line-height: 1;
+  }
+
+  .header__icon:hover,
+  .header__icon:focus-visible {
+    background: var(--holy-hover-pill);
+    box-shadow: 0 0 0 1px var(--holy-hover-ring) inset;
+  }
+}
+
+/* === Normalize header icon sizing (prevents oversized cart svg) === */
+.header__icons .svg-wrapper,
+.header__icons .svg-wrapper svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* === Cart badge === */
+.cart-count-bubble {
+  background: rgba(140, 120, 95, 0.95);
+  color: #fff;
+  border: none;
+}
+
+/* === Announcement bar === */
+.announcement-bar {
+  background: rgba(0, 0, 0, 0.9);
+  color: #fff;
+}
+
+.announcement-bar__message {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}

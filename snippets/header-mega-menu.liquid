@@ -1,0 +1,258 @@
+{% comment %}
+  Renders a megamenu for the header.
+
+  Usage:
+  {% render 'header-mega-menu' %}
+{% endcomment %}
+
+{%- assign shop_categories_menu = linklists['shop-categories'] -%}
+
+<nav class="header__inline-menu" data-holy-mega-root>
+  <ul class="list-menu list-menu--inline" role="list">
+    {%- for link in section.settings.menu.links -%}
+      <li>
+        {%- if link.links != blank -%}
+          <header-menu>
+            <details
+              id="Details-HeaderMenu-{{ forloop.index }}"
+              class="mega-menu"
+              data-holy-mega
+            >
+              <summary
+                id="HeaderMenu-{{ link.handle }}"
+                class="header__menu-item list-menu__item link focus-inset"
+              >
+                <span
+                  {%- if link.child_active %}
+                    class="header__active-menu-item"
+                  {% endif %}
+                >
+                  {{- link.title | escape -}}
+                </span>
+                {{- 'icon-caret.svg' | inline_asset_content -}}
+              </summary>
+
+              <div
+                id="MegaMenu-Content-{{ forloop.index }}"
+                class="mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup"
+                tabindex="-1"
+              >
+                {%- comment -%}
+                  HØLY Custom Mega Menu (Shop only)
+                  - Left column: uses Shop's child links (Ritual Systems)
+                  - Right column: uses the separate menu "shop-categories"
+                  Everything else falls back to default Dawn mega menu behavior.
+                {%- endcomment -%}
+
+                {%- if link.title == 'Shop' -%}
+                  <div class="page-width holy-mega" role="presentation">
+                    <div class="holy-mega__col holy-mega__col--systems">
+                      <p class="holy-mega__title">Ritual Systems</p>
+
+                      <ul class="holy-mega__list" role="list">
+                        {%- for childlink in link.links -%}
+                          <li class="holy-mega__item">
+                            <a
+                              id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+                              href="{{ childlink.url }}"
+                              class="holy-mega__link{% if childlink.current %} is-active{% endif %}"
+                              {% if childlink.current %}
+                                aria-current="page"
+                              {% endif %}
+                            >
+                              <span class="holy-mega__link-title">{{ childlink.title | escape }}</span>
+                            </a>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    </div>
+
+                    <div class="holy-mega__col holy-mega__col--categories">
+                      <p class="holy-mega__title">Shop by Category</p>
+
+                      {%- if shop_categories_menu and shop_categories_menu.links.size > 0 -%}
+                        <ul class="holy-mega__list" role="list">
+                          {%- for catlink in shop_categories_menu.links -%}
+                            <li class="holy-mega__item">
+                              <a
+                                id="HeaderMenu-ShopCategories-{{ catlink.handle }}"
+                                href="{{ catlink.url }}"
+                                class="holy-mega__link{% if catlink.current %} is-active{% endif %}"
+                                {% if catlink.current %}
+                                  aria-current="page"
+                                {% endif %}
+                              >
+                                <span class="holy-mega__link-title">{{ catlink.title | escape }}</span>
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      {%- else -%}
+                        <p class="holy-mega__empty">Add items to the “Shop – Categories” menu in Shopify Admin.</p>
+                      {%- endif -%}
+                    </div>
+
+                    <div class="holy-mega__col holy-mega__col--promo">
+                      <div class="holy-promo">
+                        <p class="holy-promo__eyebrow">Studio</p>
+                        <p class="holy-promo__title">Studio Membership</p>
+                        <p class="holy-promo__body">
+                          Direct-to-studio Ritual Care for elevated piercing and tattoo aftercare.
+                        </p>
+                        <div class="holy-promo__actions">
+                          <a class="holy-promo__cta" href="/pages/studio-access">Studio Access</a>
+                          <a class="holy-promo__link" href="/pages/ritual-finder">Ritual Finder</a>
+                        </div>
+                      </div>
+                    </div>
+
+                    {%- comment -%}
+                      Promo column (Studio) – edit copy/links in this snippet.
+                    {%- endcomment -%}
+                  </div>
+
+                {%- else -%}
+                  {%- comment -%} Default Dawn mega menu rendering {%- endcomment -%}
+                  <ul
+                    class="mega-menu__list page-width{% if link.levels == 1 %} mega-menu__list--condensed{% endif %}"
+                    role="list"
+                  >
+                    {%- for childlink in link.links -%}
+                      <li>
+                        <a
+                          id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+                          href="{{ childlink.url }}"
+                          class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}"
+                          {% if childlink.current %}
+                            aria-current="page"
+                          {% endif %}
+                        >
+                          {{ childlink.title | escape }}
+                        </a>
+                        {%- if childlink.links != blank -%}
+                          <ul class="list-unstyled" role="list">
+                            {%- for grandchildlink in childlink.links -%}
+                              <li>
+                                <a
+                                  id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                  href="{{ grandchildlink.url }}"
+                                  class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}"
+                                  {% if grandchildlink.current %}
+                                    aria-current="page"
+                                  {% endif %}
+                                >
+                                  {{ grandchildlink.title | escape }}
+                                </a>
+                              </li>
+                            {%- endfor -%}
+                          </ul>
+                        {%- endif -%}
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </div>
+            </details>
+          </header-menu>
+        {%- else -%}
+          <a
+            id="HeaderMenu-{{ link.handle }}"
+            href="{{ link.url }}"
+            class="header__menu-item list-menu__item link link--text focus-inset"
+            {% if link.current %}
+              aria-current="page"
+            {% endif %}
+          >
+            <span
+              {%- if link.current %}
+                class="header__active-menu-item"
+              {% endif %}
+            >
+              {{- link.title | escape -}}
+            </span>
+          </a>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+</nav>
+
+{%- comment -%}
+  HØLY Desktop Hover Mega Menu Behavior
+  - Desktop only (min-width: 990px)
+  - Hover opens <details>, mouseleave closes with a short delay
+  - Escape closes any open mega menu
+  - Mobile remains click/tap-based (Dawn default)
+{%- endcomment -%}
+
+<script>
+  (function () {
+    // Guard: avoid double-binding if snippet is rendered more than once
+    if (window.__HOLY_MEGA_HOVER_BOUND__) return;
+    window.__HOLY_MEGA_HOVER_BOUND__ = true;
+
+    var desktopMQ = window.matchMedia('(min-width: 990px)');
+    var closeDelayMs = 180;
+
+    function getMenus() {
+      return Array.prototype.slice.call(document.querySelectorAll('[data-holy-mega]'));
+    }
+
+    function closeAll(exceptEl) {
+      getMenus().forEach(function (d) {
+        if (exceptEl && d === exceptEl) return;
+        d.removeAttribute('open');
+      });
+    }
+
+    function bindDesktopHover() {
+      var menus = getMenus();
+
+      menus.forEach(function (details) {
+        var t;
+
+        function openMenu() {
+          clearTimeout(t);
+          // Close siblings first (clean behavior)
+          closeAll(details);
+          details.setAttribute('open', '');
+        }
+
+        function scheduleClose() {
+          clearTimeout(t);
+          t = setTimeout(function () {
+            // Only close if pointer is fully outside the <details>
+            if (!details.matches(':hover')) details.removeAttribute('open');
+          }, closeDelayMs);
+        }
+
+        // Hover intent (desktop)
+        details.addEventListener('mouseenter', openMenu);
+        details.addEventListener('mouseleave', scheduleClose);
+
+        // If focus enters the details (keyboard navigation), keep it open on desktop
+        details.addEventListener('focusin', function () {
+          if (!desktopMQ.matches) return;
+          openMenu();
+        });
+      });
+
+      // Escape closes any open menu
+      document.addEventListener('keydown', function (e) {
+        if (!desktopMQ.matches) return;
+        if (e.key === 'Escape') closeAll();
+      });
+
+      // Clicking outside closes menus (desktop only)
+      document.addEventListener('click', function (e) {
+        if (!desktopMQ.matches) return;
+        var root = document.querySelector('[data-holy-mega-root]');
+        if (!root) return;
+        if (!root.contains(e.target)) closeAll();
+      });
+    }
+
+    // Bind once now; logic itself gates desktop behavior via media query checks
+    bindDesktopHover();
+  })();
+</script>
