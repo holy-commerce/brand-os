@@ -1,129 +1,15 @@
-/* Holy Ritual Care — AI Tokens
- * Source: HolyRitualBrand reference export (Figma Make system)
- * Compiled for Shopify theme consumption.
- */
+/* Brand OS Tokens (AI-managed)
+   Brand branches may override values here.
+*/
 
 :root {
-  --background: #F9F6F0;
-  --foreground: #1A1A1A;
+  --ai-page-max: 1200px;
+  --ai-section-pad-y: 48px;
+  --ai-section-pad-x: 24px;
 
-  --card: #FFFFFF;
-  --card-foreground: #1A1A1A;
+  --ai-radius-sm: 8px;
+  --ai-radius-md: 16px;
+  --ai-radius-lg: 24px;
 
-  --popover: rgba(255, 255, 255, 0.96);
-  --popover-foreground: #1A1A1A;
-
-  --primary: #1A1A1A;
-  --primary-foreground: #F9F6F0;
-
-  --secondary: rgba(26, 26, 26, 0.06);
-  --secondary-foreground: #1A1A1A;
-
-  --muted: rgba(26, 26, 26, 0.06);
-  --muted-foreground: rgba(26, 26, 26, 0.60);
-
-  --accent: rgba(26, 26, 26, 0.08);
-  --accent-foreground: #1A1A1A;
-
-  --destructive: #E11D48;
-  --destructive-foreground: #FFFFFF;
-
-  --border: rgba(26, 26, 26, 0.12);
-  --input: rgba(26, 26, 26, 0.12);
-  --ring: rgba(26, 26, 26, 0.35);
-
-  --radius: 12px;
-
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12);
-
-  --blur: 12px;
-
-  --space-0: 0px;
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 20px;
-  --space-6: 24px;
-  --space-7: 28px;
-  --space-8: 32px;
-  --space-9: 36px;
-  --space-10: 40px;
-  --space-12: 48px;
-  --space-14: 56px;
-  --space-16: 64px;
-  --space-20: 80px;
-  --space-24: 96px;
-  --space-28: 112px;
-  --space-32: 128px;
-
-  --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
-    "Segoe UI Emoji";
-  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-
-  --text-xs: 12px;
-  --text-sm: 14px;
-  --text-base: 16px;
-  --text-lg: 18px;
-  --text-xl: 20px;
-  --text-2xl: 24px;
-  --text-3xl: 30px;
-  --text-4xl: 36px;
-  --text-5xl: 48px;
-
-  --leading-tight: 1.2;
-  --leading-snug: 1.35;
-  --leading-normal: 1.5;
-  --leading-relaxed: 1.65;
-
-  --tracking-tight: -0.02em;
-  --tracking-normal: 0em;
-  --tracking-wide: 0.02em;
-
-  --button-height: 44px;
-  --button-radius: 999px;
-
-  --container-max: 1200px;
-  --container-pad: 20px;
-
-  --z-base: 0;
-  --z-dropdown: 10;
-  --z-sticky: 20;
-  --z-modal: 30;
-  --z-popover: 40;
-  --z-toast: 50;
-}
-
-.dark {
-  --background: #0B0B0B;
-  --foreground: #F2F2F2;
-
-  --card: rgba(255, 255, 255, 0.06);
-  --card-foreground: #F2F2F2;
-
-  --popover: rgba(20, 20, 20, 0.94);
-  --popover-foreground: #F2F2F2;
-
-  --primary: #F2F2F2;
-  --primary-foreground: #0B0B0B;
-
-  --secondary: rgba(255, 255, 255, 0.08);
-  --secondary-foreground: #F2F2F2;
-
-  --muted: rgba(255, 255, 255, 0.08);
-  --muted-foreground: rgba(242, 242, 242, 0.65);
-
-  --accent: rgba(255, 255, 255, 0.10);
-  --accent-foreground: #F2F2F2;
-
-  --border: rgba(255, 255, 255, 0.14);
-  --input: rgba(255, 255, 255, 0.14);
-  --ring: rgba(242, 242, 242, 0.35);
-
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
-  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.55);
+  --ai-shadow-sm: 0 2px 12px rgba(0,0,0,.08);
 }
